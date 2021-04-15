@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { Route, NavLink, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import HomeView from './views/HomeView';
+import MoviesFindView from './views/MoviesFindView';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export class App extends Component {
+  static propTypes = {};
+
+  render() {
+    return (
+      <div>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/movies">Movies</NavLink>
+        
+        <Switch>
+          <Route exact path="/" component={HomeView} />
+          <Route path="/movies" component={MoviesFindView} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;
