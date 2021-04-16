@@ -1,27 +1,36 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import PageButton from '../PageButton';
 
-export default class MoviesPage extends Component {
-
+class MoviesPage extends Component {
   render() {
-    const { moviesData, onClick } = this.props;
+    const { moviesData, onClick, location } = this.props;
 
     const posterBaseUrl = 'https://image.tmdb.org/t/p/w500';
 
     return (
       <div>
-        {moviesData && (
+        {!!moviesData.length && (
           <>
             <ul>
               {moviesData.map(({ poster_path, original_title, title, id }) => {
                 return (
                   <li key={id}>
-                    <img
-                      src={posterBaseUrl + poster_path}
-                      alt={original_title}
-                    />
-                    <h3>{title}</h3>
+                    <Link
+                      to={{
+                        pathname: `/movies/${id}`,
+                        state: {
+                          from: location
+                        }
+                      }}
+                    >
+                      <img
+                        src={posterBaseUrl + poster_path}
+                        alt={original_title}
+                      />
+                      <h3>{title}</h3>
+                    </Link>
                   </li>
                 );
               })}
@@ -33,3 +42,5 @@ export default class MoviesPage extends Component {
     );
   }
 }
+
+export default withRouter(MoviesPage);

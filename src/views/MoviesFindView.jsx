@@ -20,8 +20,6 @@ export default class MoviesFindView extends Component {
 
   changeQuery = newQuery => {
       this.setState({ query: newQuery });
-      
-      console.log(this.state.query);
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -56,6 +54,7 @@ export default class MoviesFindView extends Component {
         <MoviesPage
           moviesData={this.state.moviesData}
           onClick={this.changePage}
+          url={this.props.match.url}
         />
       </div>
     );

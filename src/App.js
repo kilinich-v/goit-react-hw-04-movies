@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Route, NavLink, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import routes from './routes';
+import AppBar from './components/AppBar';
 import HomeView from './views/HomeView';
 import MoviesFindView from './views/MoviesFindView';
+import MovieDetailsView from './views/MovieDetailsView';
 
 
 export class App extends Component {
@@ -11,12 +14,11 @@ export class App extends Component {
   render() {
     return (
       <div>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/movies">Movies</NavLink>
-        
+        <AppBar/>
         <Switch>
-          <Route exact path="/" component={HomeView} />
-          <Route path="/movies" component={MoviesFindView} />
+          <Route exact path={routes.home} component={HomeView} />
+          <Route path={routes.moviesDetails} component={MovieDetailsView} />
+          <Route path={routes.moviesFind} component={MoviesFindView} />
         </Switch>
       </div>
     );

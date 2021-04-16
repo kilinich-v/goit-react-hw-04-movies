@@ -29,5 +29,11 @@ export default {
     return axios.get(
       `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${AUTH_TOKEN}`,
     );
+  },
+
+  getCast(movieId) {
+    return axios.get(
+      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${AUTH_TOKEN}`,
+    );
   }
 };
