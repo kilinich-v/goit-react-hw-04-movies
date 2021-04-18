@@ -10,26 +10,27 @@ class MoviesPage extends Component {
     const posterBaseUrl = 'https://image.tmdb.org/t/p/w500';
 
     return (
-      <div>
+      <>
         {!!moviesData.length && (
           <>
-            <ul>
+            <ul className="moviesList">
               {moviesData.map(({ poster_path, original_title, title, id }) => {
                 return (
-                  <li key={id}>
+                  <li key={id} className="moviesList__item">
                     <Link
                       to={{
                         pathname: `/movies/${id}`,
                         state: {
-                          from: location
-                        }
+                          from: location,
+                        },
                       }}
                     >
                       <img
                         src={posterBaseUrl + poster_path}
                         alt={original_title}
+                        className="moviesList__img"
                       />
-                      <h3>{title}</h3>
+                      <h3 className="moviesList__title">{title}</h3>
                     </Link>
                   </li>
                 );
@@ -38,7 +39,7 @@ class MoviesPage extends Component {
             <PageButton onClick={onClick} />
           </>
         )}
-      </div>
+      </>
     );
   }
 }

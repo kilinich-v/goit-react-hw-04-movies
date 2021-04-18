@@ -9,33 +9,43 @@ const MovieDetails = ({ movieData }) => {
   const { poster_path, title, genres, overview, vote_average, id } = movieData;
 
   return (
-    <>
-      <img src={posterBaseUrl + poster_path} alt={title} />
-      <h1>{title}</h1>
-      <p>{vote_average}</p>
-      <h2>Overview</h2>
-      <p>{overview}</p>
-      <h2>Genres</h2>
-      <ul>
-        {genres &&
-          genres.map(({ id, name }) => {
-            return <li key={id}>{name}</li>;
-          })}
-      </ul>
+    <div className="movie">
+      <h1 className="movie__title">{title}</h1>
+      <div className="movie__block-title">
+        <img
+          className="movie__img"
+          src={posterBaseUrl + poster_path}
+          alt={title}
+        />
+        <p className="movie__text">{vote_average}</p>
+      </div>
+      <div className="movie__block-overview">
+        <h2 className="movie__subtitle">Overview</h2>
+        <p className="movie__text">{overview}</p>
+        <h2 className="movie__subtitle">Genres</h2>
+        <ul className="movie__genres">
+          {genres &&
+            genres.map(({ id, name }) => {
+              return <li key={id}>{name}</li>;
+            })}
+        </ul>
+      </div>
 
-      <p>Additional information</p>
-      <ul>
-        <li>
-          <Link to={`/movies/${id}/cast`}>Cast</Link>
-        </li>
-        <li>
-          <Link to={`/movies/${id}/reviews`}>Reviews</Link>
-        </li>
-      </ul>
+      <div className="movie__block-add">
+        <p className="movie__text">Additional information</p>
+        <ul className="movie__add">
+          <li>
+            <Link to={`/movies/${id}/cast`}>Cast</Link>
+          </li>
+          <li>
+            <Link to={`/movies/${id}/reviews`}>Reviews</Link>
+          </li>
+        </ul>
+      </div>
 
       <Route path={routes.cast} component={Cast} />
       <Route path={routes.reviews} component={Reviews} />
-    </>
+    </div>
   );
 };
 

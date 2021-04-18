@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import movieApi from '../servises/movieApi';
 import MoviesPage from '../components/MoviesPage';
 
@@ -48,4 +48,3 @@ export default class HomeView extends Component {
     );
   }
 }
-

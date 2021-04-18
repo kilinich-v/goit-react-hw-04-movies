@@ -22,18 +22,20 @@ export default class ReviewsView extends Component {
 
     return (
       <div>
-        <ul>
-          {reviewsData.map(({ author, content, id }) => {
-            return (
-              <li key={id}>
-                <h2>Author: {author}</h2>
-                <p>{content}</p>
-              </li>
-            );
-          })}
-        </ul>
+        {this.state.error && <h1>{this.state.error}</h1>}
+        {!this.state.error && (
+          <ul>
+            {reviewsData.map(({ author, content, id }) => {
+              return (
+                <li key={id}>
+                  <h2>Author: {author}</h2>
+                  <p>{content}</p>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
     );
   }
 }
-

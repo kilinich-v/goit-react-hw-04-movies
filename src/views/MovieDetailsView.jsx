@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom';
 import movieApi from '../servises/movieApi';
 import MovieDetails from '../components/MovieDetails';
 
-
 export default class MovieDetailsPage extends Component {
   state = {
     movieData: {},
@@ -20,16 +19,24 @@ export default class MovieDetailsPage extends Component {
       .catch(err => this.setState({ error: err.message }));
   }
 
+  handleGoBack = () => {
+    const { location } = this.props;
+
+    location.state?.from
+      ? this.props.history.push(location.state.from)
+      : this.props.history.push('/');
+  };
+
   render() {
     const { movieData } = this.state;
-    const { location } = this.props;
 
     return (
       <div>
-        <button type="button" onClick={()=> this.props.history.push(location.state.from.pathname)}>Go back</button>
+        <button type="button" onClick={this.handleGoBack} className="button">
+          Go back
+        </button>
         {this.state.error && <h2>{this.state.error}</h2>}
         <MovieDetails movieData={movieData} />
-        
       </div>
     );
   }
