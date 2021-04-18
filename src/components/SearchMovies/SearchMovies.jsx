@@ -41,3 +41,7 @@ export default class SearchMovies extends Component {
     );
   }
 }
+
+SearchMovies.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

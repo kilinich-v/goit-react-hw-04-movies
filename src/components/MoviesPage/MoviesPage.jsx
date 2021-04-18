@@ -45,3 +45,9 @@ class MoviesPage extends Component {
 }
 
 export default withRouter(MoviesPage);
+
+MoviesPage.propTypes = {
+  moviesData: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
+};

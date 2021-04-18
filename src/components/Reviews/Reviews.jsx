@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import movieApi from '../../servises/movieApi';
 
 export default class ReviewsView extends Component {

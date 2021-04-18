@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import routes from '../../routes';
 import Cast from '../Cast/Cast';
 import Reviews from '../Reviews/Reviews';
@@ -50,3 +51,7 @@ const MovieDetails = ({ movieData }) => {
 };
 
 export default MovieDetails;
+
+MovieDetails.propTypes = {
+  movieData: PropTypes.array.isRequired,
+};
