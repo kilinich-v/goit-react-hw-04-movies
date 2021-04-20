@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import routes from '../../routes';
 import Cast from '../Cast/Cast';
 import Reviews from '../Reviews/Reviews';
 
-const MovieDetails = ({ movieData, addLocation }) => {
+const MovieDetails = ({ movieData, location }) => {
   const posterBaseUrl = 'https://image.tmdb.org/t/p/w500';
   const { poster_path, title, genres, overview, vote_average, id } = movieData;
 
@@ -40,7 +40,7 @@ const MovieDetails = ({ movieData, addLocation }) => {
               to={{
                 pathname: `/movies/${id}/cast`,
                 state: {
-                  from: addLocation,
+                  from: location?.state?.from,
                 },
               }}
             >
@@ -52,7 +52,7 @@ const MovieDetails = ({ movieData, addLocation }) => {
               to={{
                 pathname: `/movies/${id}/reviews`,
                 state: {
-                  from: addLocation,
+                  from: location?.state?.from,
                 },
               }}
             >
@@ -68,7 +68,7 @@ const MovieDetails = ({ movieData, addLocation }) => {
   );
 };
 
-export default MovieDetails;
+export default withRouter(MovieDetails);
 
 MovieDetails.propTypes = {
   movieData: PropTypes.object.isRequired,

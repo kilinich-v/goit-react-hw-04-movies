@@ -35,10 +35,7 @@ class MovieDetailsPage extends Component {
           Go back
         </button>
         {this.state.error && <h2>{this.state.error}</h2>}
-        <MovieDetails
-          movieData={movieData}
-          addLocation={this.props.location.state.from}
-        />
+        <MovieDetails movieData={movieData} />
       </div>
     );
   }
