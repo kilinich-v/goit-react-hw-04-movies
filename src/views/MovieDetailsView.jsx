@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import movieApi from '../servises/movieApi';
 import MovieDetails from '../components/MovieDetails';
 
-export default class MovieDetailsPage extends Component {
+class MovieDetailsPage extends Component {
   state = {
     movieData: {},
     error: '',
@@ -36,8 +35,13 @@ export default class MovieDetailsPage extends Component {
           Go back
         </button>
         {this.state.error && <h2>{this.state.error}</h2>}
-        <MovieDetails movieData={movieData} />
+        <MovieDetails
+          movieData={movieData}
+          addLocation={this.props.location.state.from}
+        />
       </div>
     );
   }
 }
+
+export default withRouter(MovieDetailsPage);

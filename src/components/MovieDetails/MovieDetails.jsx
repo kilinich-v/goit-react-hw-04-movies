@@ -5,7 +5,7 @@ import routes from '../../routes';
 import Cast from '../Cast/Cast';
 import Reviews from '../Reviews/Reviews';
 
-const MovieDetails = ({ movieData }) => {
+const MovieDetails = ({ movieData, addLocation }) => {
   const posterBaseUrl = 'https://image.tmdb.org/t/p/w500';
   const { poster_path, title, genres, overview, vote_average, id } = movieData;
 
@@ -36,10 +36,28 @@ const MovieDetails = ({ movieData }) => {
         <p className="movie__text">Additional information</p>
         <ul className="movie__add">
           <li>
-            <Link to={`/movies/${id}/cast`}>Cast</Link>
+            <Link
+              to={{
+                pathname: `/movies/${id}/cast`,
+                state: {
+                  from: addLocation,
+                },
+              }}
+            >
+              Cast
+            </Link>
           </li>
           <li>
-            <Link to={`/movies/${id}/reviews`}>Reviews</Link>
+            <Link
+              to={{
+                pathname: `/movies/${id}/reviews`,
+                state: {
+                  from: addLocation,
+                },
+              }}
+            >
+              Reviews
+            </Link>
           </li>
         </ul>
       </div>
@@ -53,5 +71,5 @@ const MovieDetails = ({ movieData }) => {
 export default MovieDetails;
 
 MovieDetails.propTypes = {
-  movieData: PropTypes.array.isRequired,
+  movieData: PropTypes.object.isRequired,
 };
