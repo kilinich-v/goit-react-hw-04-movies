@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import movieApi from '../servises/movieApi';
+import imdbApi from '../servises/imdbApi';
 import MovieDetails from '../components/MovieDetails';
 
 class MovieDetailsPage extends Component {
@@ -12,9 +12,9 @@ class MovieDetailsPage extends Component {
   componentDidMount() {
     const { movieId } = this.props.match.params;
 
-    movieApi
+    imdbApi
       .getMovie(movieId)
-      .then(({ data }) => this.setState({ movieData: data }))
+      .then(({ results }) => this.setState({ movieData: results[0] }))
       .catch(err => this.setState({ error: err.message }));
   }
 

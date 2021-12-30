@@ -7,14 +7,12 @@ class MoviesPage extends Component {
   render() {
     const { moviesData, onClick, location } = this.props;
 
-    const posterBaseUrl = 'https://image.tmdb.org/t/p/w500';
-
     return (
       <>
-        {!!moviesData.length && (
+        {!!moviesData?.items && (
           <>
             <ul className="moviesList">
-              {moviesData.map(({ poster_path, original_title, title, id }) => {
+              {moviesData.items.map(({ image, title, id }) => {
                 return (
                   <li key={id} className="moviesList__item">
                     <Link
@@ -26,8 +24,8 @@ class MoviesPage extends Component {
                       }}
                     >
                       <img
-                        src={posterBaseUrl + poster_path}
-                        alt={original_title}
+                        src={image}
+                        alt={image}
                         className="moviesList__img"
                       />
                       <h3 className="moviesList__title">{title}</h3>

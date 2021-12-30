@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import movieApi from '../servises/movieApi';
+
+import imdbApi from '../servises/imdbApi';
 import MoviesPage from '../components/MoviesPage';
 
 export default class HomeView extends Component {
   state = {
-    moviesData: [],
+    moviesData: {},
     currentPage: 1,
     error: '',
   };
@@ -18,19 +18,11 @@ export default class HomeView extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     //Fetch new page
-    if (this.state.currentPage !== prevState.currentPage) {
-      movieApi
-        .getTrendingMovie(this.state.currentPage)
-        .then(data =>
-          this.setState({ moviesData: [...prevState.moviesData, ...data] }),
-        )
-        .catch(err => this.setState({ error: err.message }));
-    }
   }
 
   componentDidMount() {
-    movieApi
-      .getTrendingMovie(this.state.currentPage)
+    imdbApi
+      .getTop()
       .then(data => this.setState({ moviesData: data }))
       .catch(err => this.setState({ error: err.message }));
   }

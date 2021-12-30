@@ -6,32 +6,15 @@ import Cast from '../Cast/Cast';
 import Reviews from '../Reviews/Reviews';
 
 const MovieDetails = ({ movieData, location }) => {
-  const posterBaseUrl = 'https://image.tmdb.org/t/p/w500';
-  const { poster_path, title, genres, overview, vote_average, id } = movieData;
+  const { image, title, id } = movieData;
 
   return (
     <div className="movie">
       <h1 className="movie__title">{title}</h1>
       <div className="movie__block-title">
-        <img
-          className="movie__img"
-          src={posterBaseUrl + poster_path}
-          alt={title}
-        />
-        <p className="movie__text">{vote_average}</p>
+        <img className="movie__img" src={image} alt={title} />
       </div>
-      <div className="movie__block-overview">
-        <h2 className="movie__subtitle">Overview</h2>
-        <p className="movie__text">{overview}</p>
-        <h2 className="movie__subtitle">Genres</h2>
-        <ul className="movie__genres">
-          {genres &&
-            genres.map(({ id, name }) => {
-              return <li key={id}>{name}</li>;
-            })}
-        </ul>
-      </div>
-
+      <div id="yohoho" data-title={title} data-videospider_tv="0"></div>
       <div className="movie__block-add">
         <p className="movie__text">Additional information</p>
         <ul className="movie__add">
