@@ -24,6 +24,7 @@ ul {
 
 .container {
   width: 1200px;
+  padding: 0 20px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -33,6 +34,7 @@ ul {
 .nav-list {
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
 
   &__item:not(:last-child) {
     margin-right: 20px;
